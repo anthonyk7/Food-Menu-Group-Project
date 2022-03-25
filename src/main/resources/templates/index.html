@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org/">
+<head>
+    <meta charset="UTF-8">
+    <title>HTMl</title>
+</head>
+<body>
+<table>
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>NAME</th>
+        <th>TYPE</th>
+        <th>LIKES</th>
+    </tr>
+    </thead>
+    <tbody>
+    <th:block th:each="dish : ${dishList}">
+        <td th:text="${dish.id}"></td>
+        <td th:text="${dish.name}"></td>
+        <td th:text="${dish.type}"></td>
+        <td th:text="${dish.likes}"></td>
+    </th:block>
+    </tbody>
+</table>
+</body>
+</html>
