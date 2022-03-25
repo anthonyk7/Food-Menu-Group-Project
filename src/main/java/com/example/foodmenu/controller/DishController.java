@@ -45,6 +45,15 @@ public class DishController {
         return "redirect:/";
     }
 
+    @RequestMapping("/delete/{id}")
+    public String delete(@PathVariable(value = "id") Integer id) {
+        dishService.deleteDishById(id);
+        return "redirect:/";
+    }
+
+
+
+
 
 
 

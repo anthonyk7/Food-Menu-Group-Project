@@ -45,5 +45,7 @@ public class DishService {
     }
 
 
-
+    public void deleteDishById(Integer id) {
+        dishDAO.deleteById(id);
+    }
 }
