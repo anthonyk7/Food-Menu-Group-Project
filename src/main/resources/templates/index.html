@@ -11,7 +11,7 @@
         <th>ID</th>
         <th>NAME</th>
         <th>TYPE</th>
-        <th>LIKES</th>
+        <th>LwIKES</th>
     </tr>
     </thead>
     <tbody>
@@ -20,6 +20,9 @@
         <td th:text="${dish.name}"></td>
         <td th:text="${dish.type}"></td>
         <td th:text="${dish.likes}"></td>
+        <td>
+            <a th:href="@{/like/{id}(id=${dish.id})}">like</a>
+        </td>
     </th:block>
     </tbody>
 </table>

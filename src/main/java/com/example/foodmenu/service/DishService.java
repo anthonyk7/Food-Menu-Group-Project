@@ -4,6 +4,7 @@ import com.example.foodmenu.dao.DishDAO;
 import com.example.foodmenu.model.Dish;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -38,7 +39,11 @@ public class DishService {
         return dish;
     }
 
-    public void deleteId(Integer id) {
-        dishDAO.deleteById(id);
+    public void incrementLike(Dish dish) {
+        dish.setLikes(1);
+        dishDAO.save(dish);
     }
+
+
+
 }
