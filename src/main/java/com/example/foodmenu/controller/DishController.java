@@ -16,9 +16,15 @@ public class DishController {
     @Autowired
     private DishService dishService;
 
+    @GetMapping("/addDish")
+    public String addDish(Model model) {
+        Dish dish = new Dish();
+        model.addAttribute("dish", dish);
+        return "add-dish-form";
+    }
 
-    @PostMapping("/addDish")
-    public String addDish(Dish dish) {
+    @PostMapping("/saveDish")
+    public String saveDish(Dish dish) {
         dishService.addDish(dish);
         return "redirect:/index";
     }
