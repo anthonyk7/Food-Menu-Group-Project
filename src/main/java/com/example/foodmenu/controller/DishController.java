@@ -51,6 +51,7 @@ public class DishController {
         return "redirect:/";
     }
 
+
     @GetMapping("/update/{id}")
     public String update(@PathVariable(value = "id") Integer id, Model model) {
         Dish dish = dishService.findById(id);
