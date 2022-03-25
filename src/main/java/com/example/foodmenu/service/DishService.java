@@ -40,7 +40,7 @@ public class DishService {
     }
 
     public void incrementLike(Dish dish) {
-        dish.setLikes(1);
+        dish.setLikes(dish.getLikes() + 1);
         dishDAO.save(dish);
     }
 

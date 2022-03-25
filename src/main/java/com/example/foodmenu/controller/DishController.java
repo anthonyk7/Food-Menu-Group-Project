@@ -38,13 +38,11 @@ public class DishController {
         return "index";
     }
 
-
-
     @RequestMapping("/like/{id}")
     public String like(@PathVariable(value = "id") Integer id) {
         Dish dish = dishService.findById(id);
         dishService.incrementLike(dish);
-        return "index";
+        return "redirect:/";
     }
 
 
