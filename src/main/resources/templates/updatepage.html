@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Update</title>
+    <link rel="stylesheet" type="text/css" href="webjars/bootstrap/5.1.1/css/bootstrap.min.css">
+
+</head>
+<body>
+
+
+<form class="text-center" th:action="@{/saveupdate}" th:object="${dish}" method="post">
+
+<div>
+    <input type="hidden" th:field="*{id}">
+</div>
+
+    <div>
+        <label>Name</label>
+        <input type="text" th:field="*{name}">
+    </div>
+
+    <div>
+        <label>Type</label>
+        <input type="text" th:field="*{type}">
+    </div>
+
+    <div>
+        <label>Likes</label>
+        <input type="text" th:field="*{likes}">
+    </div>
+
+    <button type="submit">Update</button>
+
+</form>
+
+
+</body>
+</html>

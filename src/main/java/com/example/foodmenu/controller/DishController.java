@@ -59,6 +59,14 @@ public class DishController {
         return "updatepage";
     }
 
+    @PostMapping("/saveupdate")
+    public String saveUpdate(Dish dish, Model model) {
+        dishService.addDish(dish);
+        List<Dish> dishes = dishService.findAllDishes();
+        model.addAttribute("dishList", dishes);
+        return "index";
+    }
+
 
 
 
