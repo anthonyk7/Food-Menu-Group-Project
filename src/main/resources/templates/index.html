@@ -10,6 +10,7 @@
     <title>Home Page</title>
 </head>
 <body>
+<a th:href="@{/addDish}">Create a dish</a>
 
 
 <div class="container">
@@ -24,8 +25,7 @@
         <tr>
             <th>ID</th>
             <th>Name</th>
-            <type>Type</type>
-            <th>Ingredient</th>
+            <th>Type</th>
             <th>Rating</th>
             <th>Like</th>
             <th>Operations</th>
@@ -45,7 +45,7 @@ font-weight: bold; font-size: 20px;">
             </td>
             <td>
                 <a th:href="@{/delete/{id}(id=${dish.id})}" class="btn-danger">delete</a>
-            </td>z
+            </td>
         </tr>
         </tbody>
     </table>

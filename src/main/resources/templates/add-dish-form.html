@@ -5,6 +5,9 @@
     <title>add form</title>
 </head>
 <body>
+<form th:action="@{/saveDish}" method="post" th:object="dish">
+    <input type="text" th:field="*{na}" >
+</form>
 
 </body>
 </html>
