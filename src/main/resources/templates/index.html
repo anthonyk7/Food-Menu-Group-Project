@@ -50,9 +50,14 @@ font-weight: bold; font-size: 20px;">
         </tbody>
     </table>
 
-    <form th:action="@{/popDb}" method="get">
-        <button class="btn-danger" type="submit">Populate Database</button>
+    <form th:action="@{/popDbIngridients}" method="get">
+        <button class="btn-danger" type="submit">Populate Database w. Ingridients</button>
     </form>
+
+    <form th:action="@{/popDb}" method="get">
+        <button class="btn-danger" type="submit">Populate Database w. Dishes</button>
+    </form>
+
 
 </div>
 </body>
