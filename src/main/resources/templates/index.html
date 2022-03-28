@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<!--- Thymeleaf import -->
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta name="viewport" content="width=device-width">
+    <meta charset="UTF-8">
+    <!-- Boot Strap -->
+    <link rel="stylesheet" type="text/css" href="webjars/bootstrap/5.1.1/css/bootstrap.min.css"/>
+
+    <title>Home Page</title>
+</head>
+<body>
+
+
+<div class="container">
+    <h3> food menu app</h3>
+    <h3> food menu </h3>
+
+    <!-- Table -->
+    <table class="table table-striped">
+        <!-- Table header -->
+        <thead style="background-color: darkgray">
+        <!-- Table Row -->
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <type>Type</type>
+            <th>Ingredient</th>
+            <th>Rating</th>
+            <th>Like</th>
+            <th>Operations</th>
+
+        </tr>
+        </thead>
+        <tbody style="background-color: white; font-family: 'Times New Roman';
+font-weight: bold; font-size: 20px;">
+        <tr th:each="dish : ${dishList}">
+            <td th:text="${dish.id}"></td>
+            <td th:text="${dish.name}"></td>
+            <td th:text="${dish.type}"></td>
+            <td th:text="${dish.likes}"></td>
+            <td>
+                <a th:href="@{/like/{id}(id=${dish.id})}"
+                   style="color: red; text-decoration: none; font-size: 20px; a:fon">&hearts; like</a>
+            </td>
+            <td>
+                <a th:href="@{/delete/{id}(id=${dish.id})}" class="btn-danger">delete</a>
+            </td>z
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>
+
+
+
+
