@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="ISO-8859-1">
-    <title>Employee Management System</title>
+    <title>Food Menu</title>
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
           integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
@@ -17,7 +17,7 @@
     <a th:href="@{/addDish}">Add Dish</a>
 
     <table class="table table-striped">
-        <thead>
+        <thead style="border: black solid 1px;">
         <tr>
             <th>ID</th>
             <th>NAME</th>
@@ -28,14 +28,14 @@
         </tr>
         </thead>
         <tbody>
-        <tr th:each="dish : ${listOfDishes}">
+        <tr th:each="dish : ${listOfDishes}" style="border: black solid 1px;">
             <td th:text="${dish.id}"></td>
             <td th:text="${dish.name}"></td>
             <td th:text="${dish.type}"></td>
             <td th:text="${dish.likes}"></td>
             <td>
                 <a th:href="@{/like/{id}(id=${dish.id})}"
-                   style="color: red; text-decoration: none; font-size: 20px; a:fon">&hearts; like</a>
+                   style="color: red; text-decoration: none; font-size: 20px;">&hearts; like</a>
             </td>
             <td>
                 <a th:href="@{/delete/{id}(id=${dish.id})}" class="btn-danger">delete</a>
@@ -55,10 +55,10 @@
 
 </div>
 
-<nav aria-label="Page navigation example">
+<nav aria-label="Page navigation example" style="margin-left: 45%">
     <ul class="pagination">
         <li class="page-item"><a class="page-link" th:if="${currentPage < totalPages}"
-                                 th:href="@{'/page/' + ${currentPage - 1}}">Previous</a></li>
+                                 th:href="@{'/page/' + ${currentPage - 1}}">PREVIOUS</a></li>
         <li class="page-item"><a class="page-link" th:if="${currentPage < totalPages}"
                                  th:href="@{'/page/' + ${currentPage + 1}}">NEXT</a></li>
     </ul>
