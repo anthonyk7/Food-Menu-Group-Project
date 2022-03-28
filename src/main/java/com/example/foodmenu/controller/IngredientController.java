@@ -34,6 +34,6 @@ public class IngredientController {
     public String findAllIngredients(Model model) {
         List<Ingredient> ingredients = ingredientService.findAllIngredients();
         model.addAttribute("ingredientList", ingredients);
-        return "ingredient-form";
+        return "ingredients-form";
     }
 }
