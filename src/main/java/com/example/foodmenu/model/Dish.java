@@ -59,4 +59,14 @@ public class Dish {
     public void setIngredients(List<Ingredient> ingredients) {
         this.ingredients = ingredients;
     }
+
+    public void addIngredient(Ingredient ingredient) {
+        getIngredients().add(ingredient);
+        ingredient.getDishes().add(this);
+    }
+
+    public void removeIngredient(Ingredient ingredient) {
+        getIngredients().remove(ingredient);
+        ingredient.getDishes().remove(this);
+    }
 }
