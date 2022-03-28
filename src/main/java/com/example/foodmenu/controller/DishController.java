@@ -51,4 +51,22 @@ public class DishController {
         return "redirect:/";
     }
 
+    @GetMapping("/update/{id}")
+    public String update(@PathVariable(value = "id") Integer id, Model model) {
+        Dish dish = dishService.findById(id);
+        model.addAttribute("dish", dish);
+        return "updatepage";
+    }
+
+    @PostMapping("/saveupdate")
+    public String saveUpdate(Dish dish, Model model) {
+        dishService.addDish(dish);
+        List<Dish> dishes = dishService.findAllDishes();
+        model.addAttribute("dishList", dishes);
+        return "index";
+    }
+
+
+
+
 }
