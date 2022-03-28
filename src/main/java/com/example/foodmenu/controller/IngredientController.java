@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
@@ -18,16 +19,29 @@ public class IngredientController {
     @Autowired
     private IngredientService ingredientService;
 
-    @PostMapping("ingredients/add")
-    public String addIngredient(Ingredient ingredient) {
-        ingredientService.createIngredient(ingredient);
-        return "redirect:/ingredient-form";
+    @GetMapping("/addIngredient")
+    public String addIngredient(Model model) {
+        Ingredient ingredient = new Ingredient();
+        model.addAttribute("ingredient", ingredient);
+        return "ingredients-form";
     }
 
-    @PostMapping("ingredients/remove/{id}")
+    @PostMapping("/saveIngredient")
+    public String saveIngredient(@ModelAttribute("ingredient") Ingredient ingredient) {
+        ingredientService.createIngredient(ingredient);
+        return "redirect:/ingredients-form";
+    }
+
+//    @PostMapping("/ingredients/add")
+//    public String addIngredient(Ingredient ingredient) {
+//        ingredientService.createIngredient(ingredient);
+//        return "redirect:/ingredients-form";
+//    }
+
+    @PostMapping("/ingredients/remove/{id}")
     public String removeIngredient(@PathVariable("id") Integer id) {
         ingredientService.deleteIngredientById(id);
-        return "redirect:/ingredient-form";
+        return "redirect:/ingredients-form";
     }
 
     @GetMapping("/ingredients")

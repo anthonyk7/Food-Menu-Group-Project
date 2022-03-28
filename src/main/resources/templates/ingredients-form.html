@@ -1,20 +1,18 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Ingredients</title>
+    <link rel="stylesheet" type="text/css" href="webjars/bootstrap/5.1.1/css/bootstrap.min.css">
 </head>
 <body>
 
-<form th:action="@{ingredients/add}" method="post" th:object="${ingredient}">
-    <div>
-        <label>INGREDIENT NAME</label>
-        <input type="text" th:field="*{name}">
-    </div>
+<form class="text-center" th:action="@{/saveIngredient}" th:object="${ingredient}" method="post">
 
-    <div>
-        <button type="submit">Save</button>
-    </div>
+    <label>INGREDIENT NAME</label>
+    <input type="text" th:field="*{name}">
+
+    <button type="submit">Save</button>
 </form>
 
 <table>
@@ -27,15 +25,13 @@
     </thead>
 
     <tbody>
-    <th:block th:each= "ingredient : ${ingredientList}">
-        <tr>
+    <tr th:each="ingredient : ${ingredientList}">
             <td th:text="${ingredient.id}"></td>
             <td th:text="${ingredient.name}"></td>
             <td>
-                <a th:href="@{'ingredients/remove' + ${ingredient.id}}">Delete</a>
+                <a th:href="@{'/ingredients/remove' + ${ingredient.id}}">Delete</a>
             </td>
-        </tr>
-    </th:block>
+    </tr>
     </tbody>
 </table>
 
