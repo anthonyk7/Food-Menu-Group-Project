@@ -19,24 +19,11 @@ public class IngredientController {
     @Autowired
     private IngredientService ingredientService;
 
-    @GetMapping("/addIngredient")
-    public String addIngredient(Model model) {
-        Ingredient ingredient = new Ingredient();
-        model.addAttribute("ingredient", ingredient);
-        return "ingredients-form";
-    }
-
     @PostMapping("/saveIngredient")
     public String saveIngredient(@ModelAttribute("ingredient") Ingredient ingredient) {
         ingredientService.createIngredient(ingredient);
         return "redirect:/ingredients-form";
     }
-
-//    @PostMapping("/ingredients/add")
-//    public String addIngredient(Ingredient ingredient) {
-//        ingredientService.createIngredient(ingredient);
-//        return "redirect:/ingredients-form";
-//    }
 
     @PostMapping("/ingredients/remove/{id}")
     public String removeIngredient(@PathVariable("id") Integer id) {
@@ -46,6 +33,8 @@ public class IngredientController {
 
     @GetMapping("/ingredients")
     public String findAllIngredients(Model model) {
+        Ingredient ingredient = new Ingredient();
+        model.addAttribute("ingredient", ingredient);
         List<Ingredient> ingredients = ingredientService.findAllIngredients();
         model.addAttribute("ingredientList", ingredients);
         return "ingredients-form";

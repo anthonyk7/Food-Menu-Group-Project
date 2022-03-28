@@ -9,10 +9,10 @@
 
 <form class="text-center" th:action="@{/saveIngredient}" th:object="${ingredient}" method="post">
 
-    <label>INGREDIENT NAME</label>
-    <input type="text" th:field="*{name}">
+    <input placeholder="INGREDIENT NAME" type="text" th:field="*{name}">
 
-    <button type="submit">Save</button>
+    <button type="submit">Create</button>
+
 </form>
 
 <table>
