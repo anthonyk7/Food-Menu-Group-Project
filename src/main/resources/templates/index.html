@@ -45,6 +45,9 @@ font-weight: bold; font-size: 20px;">
             <td>
                 <a th:href="@{/delete/{id}(id=${dish.id})}" class="btn-danger">delete</a>
             </td>z
+            <td>
+                <a th:href="@{/update/{id}(id=${dish.id})}">Update</a>
+            </td>
         </tr>
         </tbody>
     </table>
