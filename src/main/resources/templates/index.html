@@ -10,12 +10,10 @@
     <title>Home Page</title>
 </head>
 <body>
-<a th:href="@{/addDish}">Create a dish</a>
 
 
 <div class="container">
-    <h3> food menu app</h3>
-    <h3> food menu </h3>
+    <h3> food menu</h3>
 
     <!-- Table -->
     <table class="table table-striped">
@@ -25,7 +23,8 @@
         <tr>
             <th>ID</th>
             <th>Name</th>
-            <th>Type</th>
+            <type>Type</type>
+            <th>Ingredient</th>
             <th>Rating</th>
             <th>Like</th>
             <th>Operations</th>
@@ -45,7 +44,7 @@ font-weight: bold; font-size: 20px;">
             </td>
             <td>
                 <a th:href="@{/delete/{id}(id=${dish.id})}" class="btn-danger">delete</a>
-            </td>
+            </td>z
         </tr>
         </tbody>
     </table>
