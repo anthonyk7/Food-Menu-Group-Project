@@ -30,9 +30,13 @@ public class DishController {
     }
 
     @GetMapping("")
-    public String findAllDishes(Model model) {
-        List<Dish> dishes = dishService.findAllDishes();
-        model.addAttribute("dishList", dishes);
+    public String findAllDishes(Model model, String keyword) {
+        if (keyword != null) {
+            model.addAttribute("dishList", dishService.findByKeyword(keyword));
+        } else {
+            List<Dish> dishes = dishService.findAllDishes();
+            model.addAttribute("dishList", dishes);
+        }
         return "index";
     }
 
@@ -50,7 +54,7 @@ public class DishController {
     }
 
     @GetMapping("/popDb")
-    public String populateDatabase(){
+    public String populateDatabase() {
         Dish dish1 = new Dish();
 
         dish1.setLikes(0);
@@ -257,7 +261,6 @@ public class DishController {
         model.addAttribute("dishList", dishes);
         return "index";
     }
-
 
 
 }

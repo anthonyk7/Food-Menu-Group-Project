@@ -12,6 +12,7 @@
 <body>
 
 
+
 <div class="container">
     <h3> food menu</h3>
     <a th:href="@{/addDish}">Add Dish</a>
@@ -49,6 +50,11 @@ font-weight: bold; font-size: 20px;">
         </tr>
         </tbody>
     </table>
+
+    <form th:action="@{/}" method="get">
+        <input class="rounded m-3" type="text" name="keyword">
+        <button class="btn-danger" type="submit">Search</button>
+    </form>
 
     <form th:action="@{/popDbIngridients}" method="get">
         <button class="btn-danger" type="submit">Populate Database w. Ingridients</button>

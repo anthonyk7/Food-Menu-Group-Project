@@ -27,6 +27,10 @@ public class DishService {
         return dishes;
     }
 
+    public List<Dish> findByKeyword(String keyword) {
+        return dishDAO.findDishByName(keyword);
+    }
+
     public Dish findById(Integer id) {
         Optional<Dish> optionalDish = dishDAO.findById(id);
         Dish dish;
