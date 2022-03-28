@@ -25,7 +25,7 @@ public class DishController {
     @PostMapping("/saveDish")
     public String saveStudent(@ModelAttribute("dish") Dish dish) {
         dishService.addDish(dish);
-        return "redirect:/index";
+        return "redirect:/";
     }
 
     @GetMapping("")

@@ -18,7 +18,7 @@ public class Dish {
     @ManyToMany(mappedBy = "dishes")
     private List<Ingredient> ingredients = new java.util.ArrayList<>();
 
-    private int likes;
+    private Integer likes;
 
     public Integer getId() {
         return id;
@@ -44,11 +44,11 @@ public class Dish {
         this.type = type;
     }
 
-    public int getLikes() {
+    public Integer getLikes() {
         return likes;
     }
 
-    public void setLikes(int like) {
+    public void setLikes(Integer like) {
         this.likes = like;
     }
 
