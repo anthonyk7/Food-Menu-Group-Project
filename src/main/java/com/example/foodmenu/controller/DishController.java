@@ -1,9 +1,9 @@
 package com.example.foodmenu.controller;
 
-import com.example.foodmenu.dao.DishDAO;
 import com.example.foodmenu.model.Dish;
 import com.example.foodmenu.service.DishService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -29,13 +29,16 @@ public class DishController {
         return "redirect:/";
     }
 
-    @GetMapping("")
+    /**
+     * old controller method
+     */
+/*    @GetMapping("")
     public String findAllDishes(Model model) {
         List<Dish> dishes = dishService.findAllDishes();
         model.addAttribute("dishList", dishes);
         return "index";
     }
-
+    */
     @RequestMapping("/like/{id}")
     public String like(@PathVariable(value = "id") Integer id) {
         Dish dish = dishService.findById(id);
@@ -50,7 +53,7 @@ public class DishController {
     }
 
     @GetMapping("/popDb")
-    public String populateDatabase(){
+    public String populateDatabase() {
         Dish dish1 = new Dish();
 
         dish1.setLikes(0);
@@ -258,6 +261,24 @@ public class DishController {
         return "index";
     }
 
+    @GetMapping("/page/{pageNo}")
+    public String findPaginated(@PathVariable(value = "pageNo") int pageNo, Model model) {
+        int pageSize = 5;
+
+        Page<Dish> page = dishService.findPaginated(pageNo, pageSize);
+        List<Dish> dishes = page.getContent();
+
+        model.addAttribute("currentPage", pageNo);
+        model.addAttribute("totalPages", page.getTotalPages());
+        model.addAttribute("totalItems", page.getTotalElements());
+        model.addAttribute("listOfDishes", dishes);
+        return "index";
+    }
+
+    @GetMapping("/")
+    public String viewHomePage(Model model) {
+        return findPaginated(1, model);
+    }
 
 
 }

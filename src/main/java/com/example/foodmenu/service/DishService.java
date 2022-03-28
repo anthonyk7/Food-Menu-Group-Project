@@ -3,6 +3,10 @@ package com.example.foodmenu.service;
 import com.example.foodmenu.dao.DishDAO;
 import com.example.foodmenu.model.Dish;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -17,7 +21,7 @@ public class DishService {
     private DishDAO dishDAO;
 
 
-    public void addDish(Dish dish)  {
+    public void addDish(Dish dish) {
         dishDAO.save(dish);
     }
 
@@ -31,7 +35,7 @@ public class DishService {
         Optional<Dish> optionalDish = dishDAO.findById(id);
         Dish dish;
 
-        if(optionalDish.isPresent()) {
+        if (optionalDish.isPresent()) {
             dish = optionalDish.get();
         } else {
             throw new RuntimeException("Dish Not Found!");
@@ -47,4 +51,12 @@ public class DishService {
     public void deleteDishById(Integer id) {
         dishDAO.deleteById(id);
     }
+
+
+    public Page<Dish> findPaginated(int pageNo, int pageSize) {
+        Pageable pageable = PageRequest.of(pageNo - 1, pageSize);
+        return this.dishDAO.findAll(pageable);
+    }
+
+
 }
