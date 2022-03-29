@@ -33,9 +33,6 @@ public class DishService {
         return dishes;
     }
 
-
-
-
     public Dish findById(Integer id) {
         Optional<Dish> optionalDish = dishDAO.findById(id);
         Dish dish;
@@ -73,7 +70,4 @@ public class DishService {
         }
         return (List<Dish>) dishDAO.findAll();
     }
-
-
-
 }
