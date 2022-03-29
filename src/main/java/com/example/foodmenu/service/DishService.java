@@ -13,6 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.concurrent.ThreadLocalRandom;
 
 @Service
 public class DishService {
@@ -60,13 +61,19 @@ public class DishService {
         dishDAO.deleteById(id);
     }
 
-
     public Page<Dish> findPaginated(int pageNo, int pageSize) {
         Pageable pageable = PageRequest.of(pageNo - 1, pageSize);
         return this.dishDAO.findAll(pageable);
     }
-    public List<Dish> findByType(String typeOfFood) {
-        return dishDAO.findByType(typeOfFood);
+
+    public List<Dish> getTypeOfDish(String keyword) {
+
+        if(keyword != null) {
+            return dishDAO.findByType(keyword);
+        }
+        return (List<Dish>) dishDAO.findAll();
     }
+
+
 
 }

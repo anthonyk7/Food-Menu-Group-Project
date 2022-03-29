@@ -4,6 +4,7 @@ import com.example.foodmenu.model.Dish;
 import com.example.foodmenu.service.DishService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -286,6 +287,22 @@ public class DishController {
     public String viewHomePage(Model model, String keyword) {
         return findPaginated(1, model, keyword);
     }
+
+    @GetMapping("/dishOfTheWeek")
+    public String dishOfTheWeek() {
+
+        return "dishoftheweek/dishes-of-the-week";
+    }
+
+    @RequestMapping("/dishesOfTheWeekFish")
+    public String fishesOfWeek(Model model, @Param("keyword") String keyword) {
+        keyword = "Fish";
+        List<Dish> listFish = dishService.getTypeOfDish(keyword);
+        model.addAttribute("listFishes", listFish);
+        model.addAttribute("keyword", keyword);
+        return "dishoftheweek/dish-of-the-week-fish";
+    }
+
 
 
 }
