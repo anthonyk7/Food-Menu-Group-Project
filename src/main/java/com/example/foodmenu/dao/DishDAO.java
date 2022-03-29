@@ -1,7 +1,6 @@
 package com.example.foodmenu.dao;
 
 import com.example.foodmenu.model.Dish;
-import com.example.foodmenu.model.Ingredient;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.PagingAndSortingRepository;
