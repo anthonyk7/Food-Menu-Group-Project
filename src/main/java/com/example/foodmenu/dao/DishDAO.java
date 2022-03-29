@@ -14,4 +14,8 @@ public interface DishDAO extends CrudRepository<Dish, Integer>, PagingAndSorting
     @Query(value = "SELECT i FROM Dish i WHERE i.name like %:keyword%")
     List<Dish> findByName(@Param("keyword")String keyword);
 
+
+    @Query(value = "SELECT i FROM Dish i WHERE i.type like %:typeOfFood%")
+    List<Dish> findByType(@Param("keyword")String typeOfFood);
+
 }

@@ -65,6 +65,8 @@ public class DishService {
         Pageable pageable = PageRequest.of(pageNo - 1, pageSize);
         return this.dishDAO.findAll(pageable);
     }
-
+    public List<Dish> findByType(String typeOfFood) {
+        return dishDAO.findByType(typeOfFood);
+    }
 
 }
