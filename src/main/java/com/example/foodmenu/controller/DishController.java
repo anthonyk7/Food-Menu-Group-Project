@@ -33,13 +33,19 @@ public class DishController {
     /**
      * old controller method
      */
-/*    @GetMapping("")
-    public String findAllDishes(Model model) {
-        List<Dish> dishes = dishService.findAllDishes();
-        model.addAttribute("dishList", dishes);
+
+    @GetMapping("/")
+    public String findAllDishes(Model model, String keyword) {
+        if (keyword != null) {
+            model.addAttribute("dishList", dishService.findByKeyword(keyword));
+        } else {
+            List<Dish> dishes = dishService.findAllDishes();
+            model.addAttribute("dishList", dishes);
+
+        }
         return "index";
     }
-    */
+
     @RequestMapping("/like/{id}")
     public String like(@PathVariable(value = "id") Integer id) {
         Dish dish = dishService.findById(id);
@@ -261,7 +267,7 @@ public class DishController {
         model.addAttribute("dishList", dishes);
         return "index";
     }
-
+/*
     @GetMapping("/page/{pageNo}")
     public String findPaginated(@PathVariable(value = "pageNo") int pageNo, Model model, String keyword) {
         int pageSize = 5;
@@ -287,5 +293,5 @@ public class DishController {
         return findPaginated(1, model, keyword);
     }
 
-
+*/
 }
