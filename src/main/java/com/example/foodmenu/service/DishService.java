@@ -22,6 +22,7 @@ public class DishService {
 
 
     public void addDish(Dish dish) {
+        dish.setLikes(0);
         dishDAO.save(dish);
     }
 
@@ -30,6 +31,9 @@ public class DishService {
         dishDAO.findAll().forEach(dish -> dishes.add(dish));
         return dishes;
     }
+
+
+
 
     public Dish findById(Integer id) {
         Optional<Dish> optionalDish = dishDAO.findById(id);
@@ -41,6 +45,10 @@ public class DishService {
             throw new RuntimeException("Dish Not Found!");
         }
         return dish;
+    }
+
+    public List<Dish> findByKeyword(String keyword) {
+        return dishDAO.findByName(keyword);
     }
 
     public void incrementLike(Dish dish) {

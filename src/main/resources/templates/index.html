@@ -14,6 +14,7 @@
 <div class="container my-2">
     <h1>Food Menu</h1>
 
+
     <a th:href="@{/addDish}">Add Dish</a>
 
     <table class="table table-striped">
@@ -45,17 +46,14 @@
         </tbody>
     </table>
 
-    <form th:action="@{/popDbIngridients}" method="get">
-        <button class="btn-danger" type="submit">Populate Database w. Ingridients</button>
-    </form>
-    <br/>
-    <form th:action="@{/popDb}" method="get">
-        <button class="btn-danger" type="submit">Populate Database w. Dishes</button>
-    </form>
+
 
 </div>
 
+
+
 <nav aria-label="Page navigation example" style="margin-left: 45%">
+
     <ul class="pagination">
         <li class="page-item"><a class="page-link" th:if="${currentPage < totalPages}"
                                  th:href="@{'/page/' + ${currentPage - 1}}">PREVIOUS</a></li>
@@ -63,5 +61,19 @@
                                  th:href="@{'/page/' + ${currentPage + 1}}">NEXT</a></li>
     </ul>
 </nav>
+
+<form th:action="@{/}" method="get" style="margin-left: 40%">
+    <input class="rounded m-3" type="text" name="keyword">
+    <button class="btn-danger" type="submit">Search</button>
+</form>
+
+<form th:action="@{/popDbIngridients}" method="get">
+    <button class="btn-danger" type="submit">Populate Database w. Ingridients</button>
+</form>
+<br/>
+<form th:action="@{/popDb}" method="get">
+    <button class="btn-danger" type="submit">Populate Database w. Dishes</button>
+</form>
+
 </body>
 </html>

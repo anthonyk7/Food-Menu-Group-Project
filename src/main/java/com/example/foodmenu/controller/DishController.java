@@ -19,6 +19,7 @@ public class DishController {
     @GetMapping("/addDish")
     public String addDish(Model model) {
         Dish dish = new Dish();
+        dish.setLikes(0);
         model.addAttribute("dish", dish);
         return "add-dish-form";
     }
@@ -262,22 +263,28 @@ public class DishController {
     }
 
     @GetMapping("/page/{pageNo}")
-    public String findPaginated(@PathVariable(value = "pageNo") int pageNo, Model model) {
+    public String findPaginated(@PathVariable(value = "pageNo") int pageNo, Model model, String keyword) {
         int pageSize = 5;
 
-        Page<Dish> page = dishService.findPaginated(pageNo, pageSize);
-        List<Dish> dishes = page.getContent();
 
-        model.addAttribute("currentPage", pageNo);
-        model.addAttribute("totalPages", page.getTotalPages());
-        model.addAttribute("totalItems", page.getTotalElements());
-        model.addAttribute("listOfDishes", dishes);
+        if (keyword != null) {
+            model.addAttribute("dishList", dishService.findByKeyword(keyword));
+        } else {
+
+            Page<Dish> page = dishService.findPaginated(pageNo, pageSize);
+            List<Dish> dishes = page.getContent();
+
+            model.addAttribute("currentPage", pageNo);
+            model.addAttribute("totalPages", page.getTotalPages());
+            model.addAttribute("totalItems", page.getTotalElements());
+            model.addAttribute("listOfDishes", dishes);
+        }
         return "index";
     }
 
     @GetMapping("/")
-    public String viewHomePage(Model model) {
-        return findPaginated(1, model);
+    public String viewHomePage(Model model, String keyword) {
+        return findPaginated(1, model, keyword);
     }
 
 

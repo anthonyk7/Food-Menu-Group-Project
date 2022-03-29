@@ -7,6 +7,7 @@ import java.util.List;
 @Table(name = "dishes")
 public class Dish {
 
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
