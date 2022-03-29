@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>DISHES OF THE WEEK</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+          integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+</head>
+<body>
+<div class="text-center">
+    <div class="h3">PICK YOUR CHOICE</div>
+    <br/>
+    <a th:href="@{/weekDishMeat}" style="font-size: 30px">Dishes of the week: Meat</a>
+    <br/>
+    <br/>
+    <a th:href="@{/dishesOfTheWeekFish}" style="font-size: 30px">Dishes of the week: Fish</a>
+    <br/>
+    <br/>
+    <a th:href="@{/weekDishVeg}" style="font-size: 30px">Dishes of the week: Vegetarian</a>
+</div>
+</body>
+</html>
