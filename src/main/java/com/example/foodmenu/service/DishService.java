@@ -3,12 +3,8 @@ package com.example.foodmenu.service;
 import com.example.foodmenu.dao.DishDAO;
 import com.example.foodmenu.model.Dish;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
+
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,9 +25,10 @@ public class DishService {
 
     public List<Dish> findAllDishes() {
         List<Dish> dishes = new ArrayList<>();
-        dishDAO.findAll().forEach(dish -> dishes.add(dish));
+        dishDAO.findAll().forEach(dishes::add);
         return dishes;
     }
+
 
     public Dish findById(Integer id) {
         Optional<Dish> optionalDish = dishDAO.findById(id);
@@ -58,10 +55,11 @@ public class DishService {
         dishDAO.deleteById(id);
     }
 
+/*
     public Page<Dish> findPaginated(int pageNo, int pageSize) {
         Pageable pageable = PageRequest.of(pageNo - 1, pageSize);
         return this.dishDAO.findAll(pageable);
-    }
+    }*/
 
     public List<Dish> getTypeOfDish(String keyword) {
 

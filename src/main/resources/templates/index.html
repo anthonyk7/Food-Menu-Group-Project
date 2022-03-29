@@ -14,12 +14,22 @@
 <div class="container my-2">
     <h1>Food Menu</h1>
 
-    <a th:href="@{/addDish}">Add Dish</a>
-    <a th:href="@{/dishOfTheWeek}">Add Dish</a>
+    <form th:action="@{/addDish}">
+        <button class="btn-danger" type="submit">Add Dish</button>
+    </form>
 
+    <form th:action="@{/}" method="get">
+        <button class="btn-danger" type="submit">Search</button>
+        <input class="rounded m-3" type="text" name="keyword">
+
+        <a th:href="@{/dishOfTheWeek}">Dish of the Week</a>
+
+    </form>
 
     <table class="table table-striped">
-        <thead style="border: black solid 1px;">
+
+        <thead style="background-color: darkgray">
+
         <tr>
             <th>ID</th>
             <th>NAME</th>
@@ -29,41 +39,36 @@
             <th>OPERATION</th>
         </tr>
         </thead>
-        <tbody>
-        <tr th:each="dish : ${listOfDishes}" style="border: black solid 1px;">
+        <tbody style="background-color: white; font-family: 'Times New Roman';
+font-weight: bold; font-size: 20px;">
+        <tr th:each="dish : ${dishList}">
             <td th:text="${dish.id}"></td>
             <td th:text="${dish.name}"></td>
             <td th:text="${dish.type}"></td>
             <td th:text="${dish.likes}"></td>
             <td>
                 <a th:href="@{/like/{id}(id=${dish.id})}"
-                   style="color: red; text-decoration: none; font-size: 20px;">&hearts; like</a>
+                   style="color: red; text-decoration: none; font-size: 20px; :fon">&hearts; like</a>
             </td>
             <td>
                 <a th:href="@{/delete/{id}(id=${dish.id})}" class="btn-danger">delete</a>
                 <a th:href="@{/update/{id}(id=${dish.id})}" class="btn-primary">Update</a>
+
             </td>
         </tr>
         </tbody>
     </table>
 
+
+
     <form th:action="@{/popDbIngridients}" method="get">
         <button class="btn-danger" type="submit">Populate Database w. Ingridients</button>
     </form>
-    <br/>
+
     <form th:action="@{/popDb}" method="get">
         <button class="btn-danger" type="submit">Populate Database w. Dishes</button>
     </form>
 
 </div>
-
-<nav aria-label="Page navigation example" style="margin-left: 45%">
-    <ul class="pagination">
-        <li class="page-item"><a class="page-link" th:if="${currentPage >= 2}"
-                                 th:href="@{'/page/' + ${currentPage - 1}}">PREVIOUS</a></li>
-        <li class="page-item"><a class="page-link" th:if="${currentPage < totalPages}"
-                                 th:href="@{'/page/' + ${currentPage + 1}}">NEXT</a></li>
-    </ul>
-</nav>
 </body>
 </html>
