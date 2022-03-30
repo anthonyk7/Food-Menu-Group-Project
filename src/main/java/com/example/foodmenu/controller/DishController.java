@@ -309,6 +309,23 @@ public class DishController {
         return "dishoftheweek/dish-of-the-week-fish";
     }
 
+    @RequestMapping("/dishesOfTheWeekMeat")
+    public String MeatOfWeek(Model model, @Param("keyword") String keyword) {
+        keyword = "Meat";
+        List<Dish> listMeat = dishService.getTypeOfDish(keyword);
+        model.addAttribute("listMeat", listMeat);
+        model.addAttribute("keyword", keyword);
+        return "dishoftheweek/dish-of-the-week-meat";
+    }
+
+    @RequestMapping("/dishesOfTheWeekVeg")
+    public String VegOfWeek(Model model, @Param("keyword") String keyword) {
+        keyword = "Veg";
+        List<Dish> listVeg = dishService.getTypeOfDish(keyword);
+        model.addAttribute("listVegies", listVeg);
+        model.addAttribute("keyword", keyword);
+        return "dishoftheweek/dish-of-the-week-veg";
+    }
 
 
 }

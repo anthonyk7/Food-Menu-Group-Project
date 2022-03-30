@@ -2,9 +2,26 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>DISHES OF THE WEEK: MEAT</title>
 </head>
 <body>
-
+<table class="table table-dark">
+    <thead style="border: black solid 1px;">
+    <tr>
+        <th>ID</th>
+        <th>NAME</th>
+        <th>TYPE</th>
+        <th>RATING</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="dish : ${listMeat}" style="border: black solid 1px;">
+        <td th:text="${dish.id}"></td>
+        <td th:text="${dish.name}"></td>
+        <td th:text="${dish.type}"></td>
+        <td th:text="${dish.likes}"></td>
+    </tr>
+    </tbody>
+</table>
 </body>
 </html>
