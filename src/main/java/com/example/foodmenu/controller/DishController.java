@@ -267,33 +267,7 @@ public class DishController {
         model.addAttribute("dishList", dishes);
         return "index";
     }
-/*
-    @GetMapping("/page/{pageNo}")
-    public String findPaginated(@PathVariable(value = "pageNo") int pageNo, Model model, String keyword) {
-        int pageSize = 5;
 
-
-        if (keyword != null) {
-            model.addAttribute("dishList", dishService.findByKeyword(keyword));
-        } else {
-
-            Page<Dish> page = dishService.findPaginated(pageNo, pageSize);
-            List<Dish> dishes = page.getContent();
-
-            model.addAttribute("currentPage", pageNo);
-            model.addAttribute("totalPages", page.getTotalPages());
-            model.addAttribute("totalItems", page.getTotalElements());
-            model.addAttribute("listOfDishes", dishes);
-        }
-        return "index";
-    }
-
-    @GetMapping("/")
-    public String viewHomePage(Model model, String keyword) {
-        return findPaginated(1, model, keyword);
-    }
-
-*/
     @GetMapping("/dishOfTheWeek")
     public String dishOfTheWeek() {
 
@@ -326,6 +300,4 @@ public class DishController {
         model.addAttribute("keyword", keyword);
         return "dishoftheweek/dish-of-the-week-veg";
     }
-
-
 }
