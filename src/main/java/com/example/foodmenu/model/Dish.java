@@ -16,7 +16,7 @@ public class Dish {
 
     private String type;
 
-    @ManyToMany(mappedBy = "dishes")
+    @ManyToMany(mappedBy = "dishes", cascade =  CascadeType.PERSIST)
     private List<Ingredient> ingredients = new java.util.ArrayList<>();
 
     private Integer likes;
@@ -67,8 +67,8 @@ public class Dish {
     }
 
     public void removeIngredient(Ingredient ingredient) {
-        getIngredients().remove(ingredient);
         ingredient.getDishes().remove(this);
+
     }
 
 

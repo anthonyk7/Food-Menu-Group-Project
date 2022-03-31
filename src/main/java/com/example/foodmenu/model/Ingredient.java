@@ -41,4 +41,10 @@ public class Ingredient {
     public void setName(String name) {
         this.name = name;
     }
+
+    public void removeDish(Dish dish) {
+        //getIngredients().remove(ingredient);
+        dish.getIngredients().remove(this);
+
+    }
 }

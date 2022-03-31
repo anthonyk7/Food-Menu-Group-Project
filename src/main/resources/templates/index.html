@@ -18,6 +18,10 @@
         <button class="btn-danger" type="submit">Add Dish</button>
     </form>
 
+    <form th:action="@{/ingredients}">
+        <button class="btn-danger" type="submit">Show Ingredients</button>
+    </form>
+
     <form th:action="@{/}" method="get">
         <button class="btn-danger" type="submit">Search</button>
         <input class="rounded m-3" type="text" name="keyword">

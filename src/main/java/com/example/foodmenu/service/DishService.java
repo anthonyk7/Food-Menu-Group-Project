@@ -1,7 +1,9 @@
 package com.example.foodmenu.service;
 
 import com.example.foodmenu.dao.DishDAO;
+import com.example.foodmenu.dao.IngredientDAO;
 import com.example.foodmenu.model.Dish;
+import com.example.foodmenu.model.Ingredient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,6 +18,9 @@ public class DishService {
 
     @Autowired
     private DishDAO dishDAO;
+
+    @Autowired
+    private IngredientDAO ingredientDAO;
 
 
     public void addDish(Dish dish) {
@@ -51,8 +56,22 @@ public class DishService {
         dishDAO.save(dish);
     }
 
+    public void removeIngredientFromDish(Dish dish, Ingredient ingredient) {
+        dish.removeIngredient(ingredient);
+        ingredientDAO.save(ingredient);
+    }
+
+
     public void deleteDishById(Integer id) {
-        dishDAO.deleteById(id);
+
+        Dish dish = dishDAO.findById(id).get();
+
+        List<Ingredient> ingredients = dish.getIngredients();
+
+       ingredients.forEach(ingredient ->removeIngredientFromDish(dish,ingredient));
+
+       dishDAO.deleteById(id);
+
     }
 
 /*
@@ -63,7 +82,7 @@ public class DishService {
 
     public List<Dish> getTypeOfDish(String keyword) {
 
-        if(keyword != null) {
+        if (keyword != null) {
             return dishDAO.findByType(keyword);
         }
         return (List<Dish>) dishDAO.findAll();
