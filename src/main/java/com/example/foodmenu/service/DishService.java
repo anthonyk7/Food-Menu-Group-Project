@@ -24,7 +24,6 @@ public class DishService {
     @Autowired
     private IngredientDAO ingredientDAO;
 
-
     public void addDish(Dish dish) {
         dish.setLikes(0);
         dishDAO.save(dish);
@@ -94,5 +93,35 @@ public class DishService {
             return dishes;
         }
         return (List<Dish>) dishDAO.findAll();
+    }
+
+    public void addIngredientToDish(Integer dishID, Integer ingredientId) {
+        Optional<Dish> optionalDish = dishDAO.findById(dishID);
+        Optional<Ingredient> optionalIngredient = ingredientDAO.findById(ingredientId);
+
+        if (optionalDish.isPresent() && optionalIngredient.isPresent()) {
+            Dish dish = optionalDish.get();
+            Ingredient ingredient = optionalIngredient.get();
+
+            dish.addIngredient(ingredient);
+            dishDAO.save(dish);
+        } else {
+            throw new RuntimeException("Dish Not Found!");
+        }
+    }
+
+    public void removeIngredientFromDish(Integer dishID, Integer ingredientId) {
+        Optional<Dish> optionalDish = dishDAO.findById(dishID);
+        Optional<Ingredient> optionalIngredient = ingredientDAO.findById(ingredientId);
+
+        if (optionalDish.isPresent() && optionalIngredient.isPresent()) {
+            Dish dish = optionalDish.get();
+            Ingredient ingredient = optionalIngredient.get();
+
+            dish.removeIngredient(ingredient);
+            dishDAO.save(dish);
+        } else {
+            throw new RuntimeException("Dish Not Found!");
+        }
     }
 }

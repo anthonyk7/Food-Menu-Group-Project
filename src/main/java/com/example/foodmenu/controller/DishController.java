@@ -1,13 +1,16 @@
 package com.example.foodmenu.controller;
 
 import com.example.foodmenu.model.Dish;
+import com.example.foodmenu.model.Ingredient;
 import com.example.foodmenu.service.DishService;
+import com.example.foodmenu.service.IngredientService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Collections;
 import java.util.List;
 
 @Controller
@@ -15,6 +18,9 @@ public class DishController {
 
     @Autowired
     private DishService dishService;
+
+    @Autowired
+    private IngredientService ingredientService;
 
     @GetMapping("/addDish")
     public String addDish(Model model) {
@@ -325,5 +331,31 @@ public class DishController {
         model.addAttribute("listVegies", listVeg);
         model.addAttribute("keyword", keyword);
         return "dishoftheweek/dish-of-the-week-veg";
+    }
+
+    @GetMapping("/ingredientsByDish/{dishId}")
+    public String findAllIngredientsByDish(@PathVariable(value = "dishId") Integer dishId, Model model) {
+        List<Ingredient> ingredients = dishService.findById(dishId).getIngredients();
+        List<Ingredient> allIngredients = ingredientService.findAllIngredients();
+        Dish dish = dishService.findById(dishId);
+
+        model.addAttribute("ingredientList", allIngredients);
+        model.addAttribute("ingredientListByDish", ingredients);
+        model.addAttribute("dish", dish);
+
+        return "ingredients-by-dish";
+    }
+
+    @GetMapping("/addIngredientToDish/{dishId}/{ingredientId}")
+    public String addIngredientToDish(@PathVariable(value = "ingredientId") Integer ingredientId,@PathVariable(value = "dishId") Integer dishId) {
+        dishService.addIngredientToDish(dishId, ingredientId);
+        return "redirect:/ingredientsByDish/" + dishId;
+    }
+
+    @GetMapping("/removeIngredientFromDish/{dishId}/{ingredientId}")
+    public String removeIngredientFromDish(@PathVariable(value = "dishId") Integer dishId,
+                                           @PathVariable(value = "ingredientId") Integer ingredientId) {
+        dishService.removeIngredientFromDish(dishId, ingredientId);
+        return "redirect:/ingredientsByDish/" + dishId;
     }
 }

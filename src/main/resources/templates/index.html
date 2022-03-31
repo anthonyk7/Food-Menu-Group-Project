@@ -28,6 +28,10 @@
         <button class="btn-danger" type="submit">Show Ingredients</button>
     </form>
 
+    <form th:action="@{/ingredients}">
+        <button class="btn-danger" type="submit">Manage ingredients</button>
+    </form>
+
     <form th:action="@{/}" method="get">
 
 
@@ -48,6 +52,7 @@
             <th>TYPE</th>
             <th>RATING</th>
             <th>LIKE</th>
+            <th>INGREDIENTS</th>
             <th>OPERATION</th>
         </tr>
         </thead>
@@ -62,6 +67,7 @@ font-weight: bold; font-size: 20px;">
                 <a th:href="@{/like/{id}(id=${dish.id})}"
                    style="color: red; text-decoration: none; font-size: 20px; :fon">&hearts; like</a>
             </td>
+            <td><a th:href="@{/ingredientsByDish/{dishId}(dishId=${dish.id})}" class="btn-danger">Show ingredients</a></td>
             <td>
                 <a th:href="@{/delete/{id}(id=${dish.id})}" class="btn-danger">delete</a>
                 <a th:href="@{/update/{id}(id=${dish.id})}" class="btn-primary">Update</a>

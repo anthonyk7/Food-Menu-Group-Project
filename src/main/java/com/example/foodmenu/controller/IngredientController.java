@@ -18,14 +18,14 @@ public class IngredientController {
     @PostMapping("/saveIngredient")
     public String saveIngredient(@ModelAttribute("ingredient") Ingredient ingredient) {
         ingredientService.createIngredient(ingredient);
-        return "redirect:/ingredients-form";
+        return "redirect:/ingredients";
     }
 
     @RequestMapping("/ingredients/remove/{id}")
     public String removeIngredient(@PathVariable("id") Integer id) {
         ingredientService.deleteIngredientById(id);
 
-        return "redirect:/";
+        return "redirect:/ingredients";
     }
 
     @GetMapping("/ingredients")
