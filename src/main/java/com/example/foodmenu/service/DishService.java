@@ -9,9 +9,11 @@ import org.springframework.stereotype.Service;
 
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 import java.util.concurrent.ThreadLocalRandom;
+import java.util.stream.Stream;
 
 @Service
 public class DishService {
@@ -81,9 +83,15 @@ public class DishService {
     }*/
 
     public List<Dish> getTypeOfDish(String keyword) {
-
-        if (keyword != null) {
-            return dishDAO.findByType(keyword);
+        List<Dish> selectedDish = dishDAO.findByType(keyword);
+        List<Dish> dishes = new ArrayList<>();
+        if(keyword != null) {
+            ThreadLocalRandom.current()
+                    .ints(0, selectedDish.size())
+                    .distinct().limit(7)
+                    .forEach(p -> dishes.add(selectedDish.get(p)));
+           dishes.forEach(System.out::println);
+            return dishes;
         }
         return (List<Dish>) dishDAO.findAll();
     }

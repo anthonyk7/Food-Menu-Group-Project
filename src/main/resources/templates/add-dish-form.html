@@ -10,17 +10,15 @@
 
 
 <form class="text-center" th:action="@{/saveDish}" th:object="${dish}" method="post">
-
-    <input placeholder="DISH NAME" type="text" th:field="*{name}">
-
-    <input placeholder="DISH TYPE" type="text" th:field="*{type}">
-
-
-
-    <button type="submit">Create</button>
-
+    <br/>
+    <input style="border: black solid 3px" placeholder="DISH NAME" required type="text" th:field="*{name}">
+    <input style="border: black solid 3px"    placeholder="DISH TYPE" required type="text" th:field="*{type}">
+    <br/>
+    <br/>
+    <button style="background-color: greenyellow; color: black; font-weight: bold" type="submit">Create</button>
 </form>
 
+<a th:href="@{/}" style="text-decoration: none;font-size: 30px"> <---- Back to home page</a>
 
 </body>
 </html>

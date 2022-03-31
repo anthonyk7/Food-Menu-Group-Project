@@ -7,26 +7,34 @@
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
           integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body>
 
 <div class="container my-2">
-    <h1>Food Menu</h1>
+    <h1 style="border: black solid 3px; text-align: center; background-color: sandybrown;">Food Menu</h1>
 
     <form th:action="@{/addDish}">
         <button class="btn-danger" type="submit">Add Dish</button>
     </form>
+    <br/>
+    <form th:action="@{/dishOfTheWeek}">
+        <button class="btn-danger" type="submit">Dish Of the Week</button>
+    </form>
+
+
 
     <form th:action="@{/ingredients}">
         <button class="btn-danger" type="submit">Show Ingredients</button>
     </form>
 
     <form th:action="@{/}" method="get">
-        <button class="btn-danger" type="submit">Search</button>
-        <input class="rounded m-3" type="text" name="keyword">
 
-        <a th:href="@{/dishOfTheWeek}">Dish of the Week</a>
+
+
+        <input class="rounded m-3" type="text" name="keyword" placeholder="Search..">
+
+        <button style="margin-right: 5%;background-color: grey" class="btn-primary" type="submit"><i class="fa fa-search"></i></button>
 
     </form>
 
@@ -57,13 +65,10 @@ font-weight: bold; font-size: 20px;">
             <td>
                 <a th:href="@{/delete/{id}(id=${dish.id})}" class="btn-danger">delete</a>
                 <a th:href="@{/update/{id}(id=${dish.id})}" class="btn-primary">Update</a>
-
             </td>
         </tr>
         </tbody>
     </table>
-
-
 
     <form th:action="@{/popDbIngridients}" method="get">
         <button class="btn-danger" type="submit">Populate Database w. Ingridients</button>
@@ -72,7 +77,6 @@ font-weight: bold; font-size: 20px;">
     <form th:action="@{/popDb}" method="get">
         <button class="btn-danger" type="submit">Populate Database w. Dishes</button>
     </form>
-
 </div>
 </body>
 </html>
