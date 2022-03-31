@@ -27,5 +27,19 @@
     </tbody>
 </table>
 <a th:href="@{/dishOfTheWeek}" style="font-size: 30px; text-decoration: none"> Return to dish of the week menu</a>
+
+<br/>
+<br/>
+<br/>
+
+<h3>SHOPPING LIST</h3>
+<table>
+    <tbody>
+    <tr th:each="ingredient : ${listOfIngredients}">
+        <td th:text="${ingredient.name}"></td>
+    </tr>
+    </tbody>
+</table>
+
 </body>
 </html>

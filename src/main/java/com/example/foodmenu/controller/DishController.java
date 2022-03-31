@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -310,8 +311,16 @@ public class DishController {
     public String fishesOfWeek(Model model, @Param("keyword") String keyword) {
         keyword = "Fish";
         List<Dish> listFish = dishService.getTypeOfDish(keyword);
+        List<Ingredient> listOfIngredients = new ArrayList<>();
+
+        for (Dish dish : listFish) {
+            listOfIngredients.addAll(dish.getIngredients());
+        }
+
+        model.addAttribute("listOfIngredients", listOfIngredients);
         model.addAttribute("listFishes", listFish);
         model.addAttribute("keyword", keyword);
+
         return "dishoftheweek/dish-of-the-week-fish";
     }
 
@@ -319,8 +328,16 @@ public class DishController {
     public String MeatOfWeek(Model model, @Param("keyword") String keyword) {
         keyword = "Meat";
         List<Dish> listMeat = dishService.getTypeOfDish(keyword);
+        List<Ingredient> listOfIngredients = new ArrayList<>();
+
+        for (Dish dish : listMeat) {
+            listOfIngredients.addAll(dish.getIngredients());
+        }
+
+        model.addAttribute("listOfIngredients", listOfIngredients);
         model.addAttribute("listMeat", listMeat);
         model.addAttribute("keyword", keyword);
+
         return "dishoftheweek/dish-of-the-week-meat";
     }
 
@@ -328,8 +345,16 @@ public class DishController {
     public String VegOfWeek(Model model, @Param("keyword") String keyword) {
         keyword = "Veg";
         List<Dish> listVeg = dishService.getTypeOfDish(keyword);
+        List<Ingredient> listOfIngredients = new ArrayList<>();
+
+        for (Dish dish : listVeg) {
+            listOfIngredients.addAll(dish.getIngredients());
+        }
+
+        model.addAttribute("listOfIngredients", listOfIngredients);
         model.addAttribute("listVegies", listVeg);
         model.addAttribute("keyword", keyword);
+
         return "dishoftheweek/dish-of-the-week-veg";
     }
 
