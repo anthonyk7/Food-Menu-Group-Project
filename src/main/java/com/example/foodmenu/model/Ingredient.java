@@ -1,11 +1,16 @@
 package com.example.foodmenu.model;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
 @Table(name = "ingredients")
+@Getter
+@Setter
 public class Ingredient {
 
     @Id
@@ -15,32 +20,8 @@ public class Ingredient {
     private String name;
 
     @ManyToMany
-    @JoinColumn(name = "dish_id")
+    @JoinColumn(name = "id")
     private List<Dish> dishes = new ArrayList<>();
-
-    public List<Dish> getDishes() {
-        return dishes;
-    }
-
-    public void setDishes(List<Dish> dishes) {
-        this.dishes = dishes;
-    }
-
-    public Integer getId() {
-        return id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
 
     public void removeDish(Dish dish) {
         //getIngredients().remove(ingredient);

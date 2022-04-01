@@ -1,8 +1,13 @@
 package com.example.foodmenu.model;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import javax.persistence.*;
 import java.util.List;
 
+@Getter
+@Setter
 @Entity
 @Table(name = "dishes")
 public class Dish {
@@ -21,46 +26,6 @@ public class Dish {
 
     private Integer likes;
 
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getType() {
-        return type;
-    }
-
-    public void setType(String type) {
-        this.type = type;
-    }
-
-    public Integer getLikes() {
-        return likes;
-    }
-
-    public void setLikes(Integer like) {
-        this.likes = like;
-    }
-
-    public List<Ingredient> getIngredients() {
-        return ingredients;
-    }
-
-    public void setIngredients(List<Ingredient> ingredients) {
-        this.ingredients = ingredients;
-    }
-
     public void addIngredient(Ingredient ingredient) {
         getIngredients().add(ingredient);
         ingredient.getDishes().add(this);
@@ -70,7 +35,4 @@ public class Dish {
         ingredient.getDishes().remove(this);
 
     }
-
-
-
 }
