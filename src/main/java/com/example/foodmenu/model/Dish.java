@@ -1,5 +1,6 @@
 package com.example.foodmenu.model;
 
+
 import lombok.Getter;
 import lombok.Setter;
 

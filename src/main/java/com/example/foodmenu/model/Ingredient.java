@@ -19,6 +19,7 @@ public class Ingredient {
 
     private String name;
 
+
     @ManyToMany
     @JoinColumn(name = "id")
     private List<Dish> dishes = new ArrayList<>();
